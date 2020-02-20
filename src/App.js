@@ -1,17 +1,24 @@
 import React from 'react';
-import Routes from './RoutesList';
-import Navbar from 'react-bootstrap/Navbar'
+import {Switch, Route, BrowserRouter as Router, withRouter } from 'react-router-dom';
+import Routes from './components/RoutesList';
+import NavBar from './components/NavBar';
+import RoutesList from './components/RoutesList';
+import RouteDetails from './components/RouteDetails';
 
 class App extends React.Component {
 	render() {
 		return (
-			<div>
-				
-				<Routes></Routes>
-			</div>
+			<Router>
+				<div>
+					<NavBar></NavBar>
+					<Switch>
+						<Route exact path='/' component={RoutesList}></Route>
+						<Route path='/routes/:tag' component={withRouter(RouteDetails)}></Route>
+					</Switch>
+				</div>
+			</Router>
 		)
 	}
 }
 
 export default App;
-// https://www.freecodecamp.org/news/quick-guide-to-understanding-and-creating-reactjs-apps-8457ee8f7123/
